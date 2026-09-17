@@ -4,10 +4,7 @@ import { mediaCatalog } from "../../data/media.js";
 
 function SocialProof() {
 	const reels = mediaCatalog.reels.items;
-	const testimonialReels = mediaCatalog.testimonials.items.map((item) => ({
-		...item,
-		thumbnail: item.poster,
-	}));
+	const testimonialReels = mediaCatalog.testimonials.items;
 	const screenshots = [
 		{ id: "screen-1", label: "Print de conversa 1", placeholder: "Print do WhatsApp em preparação" },
 		{ id: "screen-2", label: "Print de conversa 2", placeholder: "Print do WhatsApp em preparação" },
@@ -23,23 +20,23 @@ function SocialProof() {
 				</div>
 
 				<div className="social-proof__group">
-					<div className="social-proof__panel">
+					<div className="social-proof__panel social-proof__panel--reels">
 						<h3>Portfólio de vídeos</h3>
 						<ReelsCarousel reels={reels} />
 					</div>
 
 					<div className="social-proof__panel">
 						<h3>Prints de WhatsApp</h3>
-						<div className="social-proof__screenshots">
+						<div className="social-proof__screenshots reels-carousel" aria-label="Galeria de prints de WhatsApp">
+							<div className="social-proof__screenshots-track reels-carousel-track" role="list">
 							{screenshots.map((item) => (
-								<div key={item.id} className="social-proof__screenshot placeholder-card" aria-label={item.label}>
-									<span>{item.placeholder}</span>
-								</div>
+								<article key={item.id} className="social-proof__screenshot reels-carousel-card" role="listitem" aria-label={item.label} />
 							))}
+							</div>
 						</div>
 					</div>
 
-					<div className="social-proof__panel">
+					<div className="social-proof__panel social-proof__panel--reels social-proof__panel--testimonials">
 						<h3>Depoimentos em vídeo</h3>
 						<ReelsCarousel reels={testimonialReels} />
 					</div>

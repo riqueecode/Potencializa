@@ -28,29 +28,6 @@
 	z-index: 1;
 }
 
-:root[data-theme="light"] .contact-modal__panel {
-	background: #8f939a;
-	border-color: rgba(255, 255, 255, 0.22);
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-modal__close {
-	background: rgba(255, 255, 255, 0.18);
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-modal__content h2,
-:root[data-theme="light"] .contact-modal__content p {
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-modal__panel,
-:root[data-theme="light"] .contact-modal__content h2,
-:root[data-theme="light"] .contact-modal__content p,
-:root[data-theme="light"] .contact-modal__close {
-	color: var(--color-text);
-}
-
 .contact-modal__panel::-webkit-scrollbar {
 	width: 0;
 	height: 0;
@@ -81,22 +58,6 @@
 	margin: 0 0 1.5rem;
 	line-height: 1.8;
 	color: var(--color-text-muted);
-}
-
-:root[data-theme="light"] .contact-modal__panel {
-	background: #a9aeb7;
-	border-color: rgba(79, 41, 120, 0.14);
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-modal__close {
-	background: rgba(255, 255, 255, 0.14);
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-modal__content h2,
-:root[data-theme="light"] .contact-modal__content p {
-	color: #ffffff;
 }
 
 @media (max-width: 767px) {

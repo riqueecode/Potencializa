@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { openWhatsAppLink } from "../../utils/whatsapp.js";
 import "./ContactForm.css";
+import { useLanguage } from "../../i18n/LanguageContext.jsx";
 
 const SERVICE_OPTIONS = [
 	"Design Gráfico",
@@ -20,6 +21,7 @@ const SERVICE_OPTIONS = [
 ];
 
 const DEFAULT_PHONE_PLACEHOLDER = "Digite seu telefone";
+const PHONE_FOCUS_PLACEHOLDER = "Por favor, escolha o país de origem no campo de localização";
 
 const ISO_REGION_CODES = [
 	"AD",
@@ -358,6 +360,7 @@ function getPhonePlaceholder(country) {
 }
 
 export default function ContactForm({ onSuccess, showTitle = false }) {
+	const { t } = useLanguage();
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -415,7 +418,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 	const handlePhoneFocus = () => {
 		if (!formData.country) {
 			setPhonePlaceholder(
-				"Por favor, escolha o país de origem no campo de localização",
+				t(PHONE_FOCUS_PLACEHOLDER),
 			);
 		}
 	};
@@ -479,23 +482,23 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 		<>
 			{showTitle && (
 				<div className="contact-form__header">
-					<h3>Fale com a nossa equipe</h3>
+					<h3>{t("Fale com a nossa equipe")}</h3>
 					<p>
-						Preencha os dados abaixo para receber nosso contato via WhatsApp.
+						{t("Preencha os dados abaixo para receber nosso contato via WhatsApp.")}
 					</p>
 				</div>
 			)}
 			<form className="contact-form fade-in-bottom" onSubmit={handleSubmit} noValidate>
 				<div className="contact-form__grid">
 					<label className="contact-form__field">
-						<span>Nome</span>
+						<span>{t("Nome")}</span>
 						<input
 							required
 							type="text"
 							name="name"
 							value={formData.name}
 							onChange={handleChange}
-							placeholder="Seu nome ou da sua empresa"
+							placeholder={t("Seu nome ou da sua empresa")}
 							aria-invalid={Boolean(formErrors.name)}
 						/>
 						{formErrors.name && (
@@ -506,14 +509,14 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 					</label>
 
 					<label className="contact-form__field">
-						<span>Email</span>
+						<span>{t("Email")}</span>
 						<input
 							required
 							type="email"
 							name="email"
 							value={formData.email}
 							onChange={handleChange}
-							placeholder="Ex: Minhaempresa@gmail.com"
+							placeholder={t("Ex: Minhaempresa@gmail.com")}
 							aria-invalid={Boolean(formErrors.email)}
 						/>
 						{formErrors.email && (
@@ -524,14 +527,14 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 					</label>
 
 					<label className="contact-form__field">
-						<span>Localização</span>
+						<span>{t("Localização")}</span>
 						<input
 							required
 							list="country-list"
 							name="country"
 							value={formData.country}
 							onChange={handleChange}
-							placeholder="Digite seu país"
+							placeholder={t("Digite seu país")}
 							aria-invalid={Boolean(formErrors.country)}
 						/>
 						<datalist id="country-list">
@@ -547,7 +550,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 					</label>
 
 					<label className="contact-form__field">
-						<span>Telefone</span>
+						<span>{t("Telefone")}</span>
 						<input
 							required
 							type="tel"
@@ -556,7 +559,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							onChange={handleChange}
 							onFocus={handlePhoneFocus}
 							onBlur={handlePhoneBlur}
-							placeholder={phonePlaceholder}
+							placeholder={formData.country ? phonePlaceholder : t(phonePlaceholder)}
 							aria-invalid={Boolean(formErrors.phone)}
 						/>
 						{formErrors.phone && (
@@ -567,7 +570,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 					</label>
 
 					<label className="contact-form__field contact-form__field--full">
-						<span>Serviços</span>
+						<span>{t("Serviços")}</span>
 						<select
 							required
 							name="service"
@@ -576,7 +579,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							aria-invalid={Boolean(formErrors.service)}
 						>
 							<option value="" disabled>
-								Selecione um serviço
+								{t("Selecione um serviço")}
 							</option>
 							{SERVICE_OPTIONS.map((option) => (
 								<option key={option} value={option}>
@@ -593,12 +596,12 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 				</div>
 
 				<label className="contact-form__field contact-form__field--full">
-					<span>Mensagem</span>
+					<span>{t("Mensagem")}</span>
 					<textarea
 						name="message"
 						value={formData.message}
 						onChange={handleChange}
-						placeholder="Nos conte mais sobre seu projeto (Opcional)"
+						placeholder={t("Nos conte mais sobre seu projeto (Opcional)")}
 						rows="5"
 						aria-invalid={Boolean(formErrors.message)}
 					/>
@@ -611,10 +614,10 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 
 				<button
 					type="submit"
-					className="btn btn--primary btn--specialist contact-form__submit color-change-2x"
+					className="btn btn--primary btn--specialist contact-form__submit"
 					disabled={isSubmitting}
 				>
-					{isSubmitting ? "Enviando..." : "Enviar"}
+					{isSubmitting ? t("Enviando...") : t("Enviar")}
 				</button>
 			</form>
 

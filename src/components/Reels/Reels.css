@@ -1,8 +1,9 @@
 .reels-section {
   display: flex;
   justify-content: center;
-  padding: 84px 16px 48px;
+	padding: 56px 16px 48px;
   scroll-margin-top: 110px;
+  background: #34114f;
 }
 
 .reels-container {
@@ -31,18 +32,12 @@
 .reels-button:hover { transform: translateY(-3px); }
 .reels-button-icon { display: inline-flex; align-items: center; }
 
-:root[data-theme="light"] .reels-button {
-  background: #fff;
-  color: var(--color-text);
-  box-shadow: 0 10px 24px rgba(79, 41, 120, .16);
-}
-
 @media (min-width: 768px) {
   .reels-title { font-size: 2.2rem; }
 }
 
 @media (max-width: 767px) {
-  .reels-section { padding: 90px 12px 36px; }
+	.reels-section { padding: 56px 12px 36px; }
   .reels-title { font-size: 1.5rem; }
 }
 

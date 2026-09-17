@@ -8,6 +8,5 @@ export const navigationItems = [
 	{ label: "Storymaker", href: "#storymaker" },
 	{ label: "Autoridade", href: "#autoridade" },
 	{ label: "FAQ", href: "#faq" },
-	{ label: "Ecossistema", href: "#ecossistema" },
 	{ label: "Contato", href: "#contact" },
 ];

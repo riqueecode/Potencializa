@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import "./ContactModal.css";
 import ContactForm from "../ContactForm/ContactForm.jsx";
+import { useLanguage } from "../../i18n/LanguageContext.jsx";
 
 function ContactModal({ isOpen, onClose }) {
+	const { t } = useLanguage();
 	const closeButtonRef = useRef(null);
 
 	useEffect(() => {
@@ -45,14 +47,14 @@ function ContactModal({ isOpen, onClose }) {
 					type="button"
 					className="contact-modal__close"
 					onClick={onClose}
-					aria-label="Fechar modal de contato"
+					aria-label={t("Fechar modal de contato")}
 					ref={closeButtonRef}
 				>
 					×
 				</button>
 				<div className="contact-modal__content">
-					<h2 id="contact-modal-title">Fale com um especialista</h2>
-					<p>Preencha seus dados para iniciar o contato via WhatsApp.</p>
+					<h2 id="contact-modal-title">{t("Fale com um especialista")}</h2>
+					<p>{t("Preencha seus dados para iniciar o contato via WhatsApp.")}</p>
 					<ContactForm showTitle={false} onSuccess={onClose} />
 				</div>
 			</div>

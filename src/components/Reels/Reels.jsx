@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import ReelsCarousel from "./ReelsCarousel.jsx";
-import { fetchInstagramReels } from "../../services/instagramService.js";
+import { fetchInstagramReels } from "../../services/instagram.js";
 import "./Reels.css";
 
 export default function Reels() {
   const [reels, setReels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -20,6 +21,7 @@ export default function Reels() {
         console.error("Erro ao carregar Reels:", error);
         if (isMounted) {
           setReels([]);
+          setError(true);
         }
       } finally {
         if (isMounted) {
@@ -48,6 +50,10 @@ export default function Reels() {
           <div className="reels-carousel reels-carousel--empty" aria-live="polite" aria-label="Carregando Reels">
             <div className="placeholder-card">Carregando Reels...</div>
           </div>
+        ) : error ? (
+          <div className="reels-carousel reels-carousel--empty" role="status">
+            <div className="placeholder-card">Não foi possível carregar os Reels.</div>
+          </div>
         ) : (
           <ReelsCarousel reels={reels} />
         )}
@@ -55,7 +61,7 @@ export default function Reels() {
         <div className="reels-cta">
           <a
             className="reels-button"
-            href="https://www.instagram.com/potencializamkt_/"
+            href="https://www.instagram.com/potencializa_/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Abrir Instagram da Potencializa"

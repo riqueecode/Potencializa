@@ -3,10 +3,6 @@
   background: linear-gradient(180deg, var(--color-background-soft), var(--color-background));
 }
 
-.results--light {
-  color: var(--color-text);
-}
-
 .results__wrapper {
   display: grid;
   gap: 2rem;

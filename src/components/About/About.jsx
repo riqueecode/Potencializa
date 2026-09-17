@@ -4,7 +4,7 @@ import imgDestaque from "../../assets/images/imgDestaque.jpeg";
 
 function About() {
 	return (
-		<section className="about about--light" id="about" aria-labelledby="about-title">
+		<section className="about" id="about" aria-labelledby="about-title">
 			<div className="container about__wrapper">
 				<div className="about__copy">
 					<span className="about__eyebrow">Sobre a Potencializa</span>

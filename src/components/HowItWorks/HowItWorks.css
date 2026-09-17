@@ -2,9 +2,15 @@
 	padding: 6rem 0;
 }
 
+.how-it-works.how-it-works {
+	background: #34114f;
+	color: #ffffff;
+}
+
 .how-it-works__grid {
 	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 260px));
+	justify-content: center;
 	gap: 1.5rem;
 }
 

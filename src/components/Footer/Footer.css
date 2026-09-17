@@ -1,13 +1,20 @@
-﻿.footer {
+﻿.footer.footer {
 	background:
-		radial-gradient(
-			circle at top left,
-			rgba(31, 126, 234, 0.14),
-			transparent 20%
-		),
-		var(--color-background);
+		#000000;
+	min-height: 220px;
 	padding: var(--spacing-xxl) 0 0;
-	color: var(--color-text);
+	color: #ffffff;
+}
+
+.footer.footer,
+.footer.footer .footer__tag,
+.footer.footer .footer__countries h4,
+.footer.footer .footer__contacts h4,
+.footer.footer .footer__countries li,
+.footer.footer .footer__contacts a,
+.footer.footer .footer__contacts button,
+.footer.footer .footer__bar {
+	color: #ffffff;
 }
 
 .footer__content {
@@ -82,12 +89,13 @@
 
 .footer__contacts a:hover,
 .footer__contacts button:hover {
-	color: var(--color-text);
+	color: #ffffff;
 	transform: translateY(-1px);
 }
 
 .footer__bar {
-	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	background: #000000;
+	border-top: 1px solid #321b57;
 	margin-top: 1.5rem;
 	padding: 1rem 0;
 	text-align: center;

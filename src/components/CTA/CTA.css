@@ -1,7 +1,27 @@
 ﻿.cta {
 	padding: var(--spacing-xxl) 0;
-	background: var(--color-background);
-	color: var(--color-text);
+	background: linear-gradient(180deg, #000000 0%, #000000 82%, #34114f 100%);
+	color: #321b57;
+}
+
+.cta .cta__title,
+.cta .cta__subtitle,
+.cta .cta__description,
+.cta .cta__links,
+.cta .cta__links a {
+	color: #ffffff;
+}
+
+.cta .cta__title {
+	color: #ff5100;
+	font-size: clamp(2.7rem, 5vw, 5rem);
+	font-weight: var(--font-weight-bold);
+	line-height: 0.95;
+	letter-spacing: -0.06em;
+}
+
+.cta.cta {
+	background: #000000;
 }
 
 .cta__content {
@@ -17,6 +37,28 @@
 	font-size: 1.15rem;
 	line-height: 1.85;
 	color: rgba(255, 255, 255, 0.84);
+}
+
+.cta .cta__impact-label {
+	position: relative;
+	display: inline-block;
+	margin-right: 2.5rem;
+	padding: 0.08em 0.28em;
+	background: #ff5100;
+	color: #000000;
+	font: inherit;
+	line-height: 1;
+}
+
+.cta .cta__impact-label::after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 100%;
+	width: 2.5rem;
+	background: linear-gradient(90deg, #ff5100 0%, transparent 100%);
+	content: "";
+	pointer-events: none;
 }
 
 .cta__form-wrap {

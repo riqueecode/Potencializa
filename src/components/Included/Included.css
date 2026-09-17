@@ -2,6 +2,11 @@
 	padding: 6rem 0;
 }
 
+.included.included {
+	background: #34114f;
+	color: #ffffff;
+}
+
 .included__list {
 	list-style: none;
 	padding: 0;
@@ -28,8 +33,9 @@
 	width: 44px;
 	height: 44px;
 	border-radius: 12px;
-	background: rgba(255, 255, 255, 0.04);
-	border: 1px solid var(--color-border);
+	background: rgba(72, 217, 142, 0.12);
+	border: 1px solid rgba(72, 217, 142, 0.45);
+	color: #48d98e;
 	font-size: 1.1rem;
 	font-weight: 700;
 	flex-shrink: 0;

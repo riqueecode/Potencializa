@@ -3,9 +3,11 @@ import "./ReelsCarousel.css";
 
 export default function ReelsCarousel({ reels = [] }) {
   const trackRef = useRef(null);
+  const videoRefs = useRef(new Map());
   const dragStart = useRef({ x: 0, scrollLeft: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const updateFocusedReel = () => {
     const track = trackRef.current;
@@ -25,11 +27,19 @@ export default function ReelsCarousel({ reels = [] }) {
   useEffect(() => {
     updateFocusedReel();
     window.addEventListener("resize", updateFocusedReel);
-    return () => window.removeEventListener("resize", updateFocusedReel);
+    const closeExpandedVideo = (event) => {
+      if (event.key === "Escape") setExpandedIndex(null);
+    };
+    window.addEventListener("keydown", closeExpandedVideo);
+    return () => {
+      window.removeEventListener("resize", updateFocusedReel);
+      window.removeEventListener("keydown", closeExpandedVideo);
+    };
   }, []);
 
   const handlePointerDown = (event) => {
     if (event.pointerType === "touch") return;
+    if (event.target.closest("button, a, video")) return;
     const track = trackRef.current;
     if (!track) return;
 
@@ -51,6 +61,21 @@ export default function ReelsCarousel({ reels = [] }) {
     setIsDragging(false);
   };
 
+  const playReel = (index) => {
+    const video = videoRefs.current.get(index);
+    if (!video) return;
+
+    videoRefs.current.forEach((currentVideo, currentIndex) => {
+      if (currentIndex !== index) currentVideo.pause();
+    });
+
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  };
+
   // Para ativar autoplay futuramente, avance o track em um intervalo desejado.
   // useEffect(() => { const timer = setInterval(() => trackRef.current?.scrollBy({ left: 280, behavior: "smooth" }), 4500); return () => clearInterval(timer); }, []);
 
@@ -63,7 +88,7 @@ export default function ReelsCarousel({ reels = [] }) {
   }
 
   return (
-    <div className="reels-carousel" aria-label="Últimos Reels">
+    <div className="reels-carousel reels-carousel--interactive" aria-label="Últimos Reels">
       <div
         className={`reels-carousel-track${isDragging ? " is-dragging" : ""}`}
         ref={trackRef}
@@ -76,7 +101,7 @@ export default function ReelsCarousel({ reels = [] }) {
       >
         {reels.map((reel, index) => (
           <article
-            className={`reels-carousel-card${index === focusedIndex ? " is-focused" : ""}`}
+            className={`reels-carousel-card${index === focusedIndex ? " is-focused" : ""}${index === expandedIndex ? " is-expanded" : ""}`}
             key={reel.id}
             role="listitem"
             aria-current={index === focusedIndex ? "true" : undefined}
@@ -84,21 +109,44 @@ export default function ReelsCarousel({ reels = [] }) {
             {reel.video ? (
               <video
                 className="reels-carousel-media"
-                src={reel.video}
-                poster={reel.thumbnail}
+                poster={reel.poster || reel.thumbnail || undefined}
                 muted
                 playsInline
-                preload="metadata"
+                controls
+                controlsList="nofullscreen noremoteplayback"
+                disablePictureInPicture
+                preload="auto"
                 aria-label={reel.title}
-              />
+                onDoubleClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setExpandedIndex(index === expandedIndex ? null : index);
+                }}
+                onError={(event) => {
+                  event.currentTarget.setAttribute("data-media-error", "true");
+                }}
+                ref={(video) => {
+                  if (video) videoRefs.current.set(index, video);
+                  else videoRefs.current.delete(index);
+                }}
+              >
+                <source src={reel.video} type={reel.videoType || undefined} />
+              </video>
             ) : (
-              <img className="reels-carousel-media" src={reel.thumbnail} alt={reel.title} draggable="false" />
+              <img className="reels-carousel-media" src={reel.thumbnail || undefined} alt={reel.title} draggable="false" />
             )}
             <div className="reels-carousel-overlay" aria-hidden="true" />
-            <span className="reels-carousel-play" aria-label={`Reproduzir ${reel.title}`}>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10-6.5-10-6.5Z" fill="currentColor" /></svg>
-            </span>
-            <span className="reels-carousel-label">{reel.title}</span>
+            {reel.video ? (
+              <button
+                className="reels-carousel-play"
+                type="button"
+                aria-label={`Reproduzir ${reel.title}`}
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={() => playReel(index)}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10-6.5-10-6.5Z" fill="currentColor" /></svg>
+              </button>
+            ) : null}
           </article>
         ))}
       </div>

@@ -4,7 +4,6 @@ export const assetStructure = {
     profile: "/src/assets/images/imgProfile.jpeg",
     highlight: "/src/assets/images/imgDestaque.jpeg",
     dark: "/src/assets/images/imgEscuro.jpg",
-    light: "/src/assets/images/imgwhite.jpeg",
   },
   videos: {
     vsl: {

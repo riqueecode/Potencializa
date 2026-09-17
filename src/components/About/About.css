@@ -104,20 +104,6 @@
   padding-top: 120px;
 }
 
-:root[data-theme="light"] .about__item--highlight {
-  background: #ffffff;
-  color: var(--color-text);
-  border-color: var(--color-border);
-  box-shadow: 0 12px 30px rgba(79, 41, 120, 0.08);
-}
-
-:root[data-theme="light"] .about__item--highlight:hover,
-:root[data-theme="light"] .about__item--highlight:focus-within {
-  background: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: 0 20px 42px rgba(79, 41, 120, 0.16);
-}
-
 .about__proof{
   width: min(100%, 680px);
   margin: 0;

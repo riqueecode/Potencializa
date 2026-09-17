@@ -10,11 +10,9 @@ import Plans from "./components/Plans/Plans.jsx";
 import Storymaker from "./components/Storymaker/Storymaker.jsx";
 import Authority from "./components/Authority/Authority.jsx";
 import FAQ from "./components/FAQ/FAQ.jsx";
-import Ecosystem from "./components/Ecosystem/Ecosystem.jsx";
 import CTA from "./components/CTA/CTA.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import ContactModal from "./components/ContactModal/ContactModal.jsx";
-import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./styles/theme-overrides.css";
 
 function App() {
@@ -42,12 +40,11 @@ function App() {
 	const closeContact = () => setContactOpen(false);
 
 	return (
-		<ThemeProvider>
-			<div className="app-root">
+		<div className="app-root">
 				<Navbar onOpenContact={openContact} />
-				<Reels />
 				<main>
 					<Hero onOpenContact={openContact} />
+					<Reels />
 					<Benefits />
 					<HowItWorks />
 					<Included />
@@ -56,13 +53,11 @@ function App() {
 					<Storymaker />
 					<Authority />
 					<FAQ />
-					<Ecosystem />
 					<CTA />
 				</main>
 				<Footer onOpenContact={openContact} />
 				<ContactModal isOpen={isContactOpen} onClose={closeContact} />
-			</div>
-		</ThemeProvider>
+		</div>
 	);
 }
 

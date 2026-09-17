@@ -17,8 +17,8 @@ main,
 .social-media,
 .storymaker,
 .video-packages {
-	background: var(--color-background);
-	color: var(--color-text);
+	background: #ffffff;
+	color: var(--color-primary-strong);
 }
 
 .authority,

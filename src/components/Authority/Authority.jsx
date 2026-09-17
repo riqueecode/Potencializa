@@ -1,40 +1,11 @@
 import "./Authority.css";
-
-const pillars = [
-	"Estratégia centrada em resultados",
-	"Conteúdo que comunica valor e confiança",
-	"Produção visual com alto impacto percebido",
-	"Sistema de relacionamento e presença contínua",
-];
+import profileImage from "../../assets/images/imgProfile.jpeg";
+import { openWhatsAppLink } from "../../utils/whatsapp.js";
+import { useLanguage } from "../../i18n/LanguageContext.jsx";
 
 function Authority() {
-	return (
-		<section className="authority" id="autoridade" aria-labelledby="autoridade-title">
-			<div className="container authority__wrapper">
-				<div className="section-heading">
-					<span className="section-kicker">Autoridade</span>
-					<h2 id="autoridade-title">A marca certa comunica valor antes mesmo de vender.</h2>
-				</div>
-
-				<div className="authority__content scroll-highlight">
-					<div className="authority__copy">
-						<p>
-							A Potencializa ajuda empresas a se posicionarem com clareza, consistência e presença premium no mercado.
-						</p>
-						<p>
-							Quando a narrativa da marca está forte, o cliente sente confiança antes mesmo de conversar. E isso muda a forma como a oferta é percebida e convertida.
-						</p>
-					</div>
-
-					<ul className="authority__list">
-						{pillars.map((item) => (
-							<li key={item}>{item}</li>
-						))}
-					</ul>
-				</div>
-			</div>
-		</section>
-	);
+	const { t } = useLanguage();
+	const handleContactClick = () => openWhatsAppLink({ message: "Olá, quero trabalhar com a Potencializa.", context: "Authority section" });
+	return <section className="authority" id="autoridade" aria-labelledby="autoridade-title"><div className="container authority__wrapper"><div className="section-heading"><span className="section-kicker">{t("Autoridade")}</span><h2 id="autoridade-title">{t("Mais de 6 anos a transformar ideias em vídeos que vendem.")}</h2></div><div className="authority__content scroll-highlight"><div className="authority__image"><img src={profileImage} alt={t("Fundadora da Potencializa")} /></div><div className="authority__copy"><p>{t("Sou apaixonada pelo que faço. Brasileira, criativa por natureza, e com uma obsessão: fazer os seus vídeos prenderem a atenção do primeiro ao último segundo.")}</p><p>{t("Ao longo de 6 anos no mercado audiovisual, já editei milhares de vídeos. Prestei serviço para mais de 50 empresas de dezenas de nichos diferentes, desde o Rio de Janeiro até aqui em Portugal.")}</p><p>{t("Não sou “apenas uma editora”. Sou formada em Marketing e especializada em Criação de Roteiros e Formatos Virais. Além disso, a minha base no Marketing Político foi forjada na prática: trabalhei 4 anos intensos ao lado de um vereador (que foi reeleito). A dinâmica da política não permite atrasos nem falta de ideias, e essa experiência transformou-me numa profissional extremamente ágil, criativa e habituada a entregar excelência sob pressão.")}</p><p>{t("Isso significa que cada roteiro que escrevo e cada corte que faço tem uma intenção clara: gerar desejo, retenção e autoridade para si.")}</p><p>{t("Além de aplicar tudo isso nos meus clientes, já formei mais de 50 alunos, ensinando a arte de criar vídeos que dão resultados. Estou a estudar e a aprimorar-me todos os dias, garantindo que os meus clientes estão sempre um passo à frente no digital.")}</p><button type="button" className="btn btn--primary authority__cta" onClick={handleContactClick}>{t("Quero trabalhar com a Potencializa")}</button></div></div></div></section>;
 }
-
 export default Authority;

@@ -1,6 +1,6 @@
-.ecosystem {
+.ecosystem.ecosystem {
 	padding: 6rem 0;
-	background: #ffffff;
+	background: linear-gradient(180deg, #ffffff 0%, #ffffff 82%, #000000 100%);
 	color: var(--color-primary-strong);
 }
 

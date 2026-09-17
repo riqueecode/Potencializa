@@ -38,10 +38,12 @@ option {
 html {
 	scroll-behavior: smooth;
 	transition: color-scheme 300ms ease;
+	overflow-x: hidden;
 }
 
 body {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 #root {
@@ -54,6 +56,20 @@ main {
 	min-height: 100vh;
 	background: var(--color-background);
 	color: var(--color-text);
+}
+
+.app-root {
+	display: flex;
+	flex-direction: column;
+}
+
+.app-root main {
+	flex: 1 0 auto;
+}
+
+.app-root > .footer {
+	flex: 0 0 auto;
+	width: 100%;
 }
 
 main {
@@ -80,10 +96,8 @@ main {
 .social-media,
 .storymaker,
 .video-packages,
-.navbar,
-.navbar__nav,
 .footer__bar {
-	background: var(--color-background);
+	background: #000000;
 	color: var(--color-text);
 }
 
@@ -161,6 +175,38 @@ main {
 .container {
 	width: min(1120px, calc(100% - 2rem));
 	margin: 0 auto;
+}
+
+img,
+video,
+iframe {
+	max-width: 100%;
+}
+
+@media (max-width: 899px) {
+	.section-heading,
+	.plans__header,
+	.cta__copy,
+	.authority__wrapper {
+		margin-inline: auto;
+		text-align: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.container {
+		width: min(1120px, calc(100% - 1.5rem));
+	}
+
+	.btn {
+		white-space: normal;
+		text-align: center;
+	}
+
+	.scroll-highlight:hover,
+	.scroll-highlight:focus-within {
+		transform: none;
+	}
 }
 
 button,

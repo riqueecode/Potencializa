@@ -5,7 +5,7 @@ function VideoPackages({ onOpenContact }) {
 	return (
 		<section
 			id="video-packages"
-			className="video-packages video-packages--light"
+			className="video-packages"
 			aria-labelledby="video-packages-title"
 		>
 			<div className="container video-packages__wrapper">

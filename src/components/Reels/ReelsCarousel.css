@@ -17,12 +17,23 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: contain;
   cursor: grab;
-  touch-action: pan-y;
+	/* Permite que o navegador processe o swipe horizontal nativo no celular. */
+	touch-action: pan-x pan-y;
 }
 
 .reels-carousel-track::-webkit-scrollbar { display: none; }
 .reels-carousel-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+
+.reels-carousel--interactive .reels-carousel-track::before,
+.reels-carousel--interactive .reels-carousel-track::after {
+  content: "";
+  display: block;
+  flex: 0 0 calc((100% - var(--reel-card-width)) / 2);
+  height: 1px;
+}
 
 .reels-carousel-card {
   position: relative;
@@ -44,6 +55,21 @@
   opacity: 1;
   transform: scale(1);
   box-shadow: 0 18px 38px rgba(0, 0, 0, .34);
+}
+
+.reels-carousel-card.is-expanded {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  width: min(42vw, 460px);
+  height: min(72vh, 680px);
+  max-width: 90vw;
+  max-height: 72vh;
+  aspect-ratio: 9 / 16;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
 }
 
 .reels-carousel-media {
@@ -74,25 +100,14 @@
   border-radius: 50%;
   background: rgba(24, 18, 31, .45);
   color: #fff;
+  padding: 0;
+  cursor: pointer;
   transform: translate(-50%, -50%);
   backdrop-filter: blur(4px);
   transition: transform .28s ease, background-color .28s ease;
 }
 
 .reels-carousel-play svg { width: 29px; height: 29px; margin-left: 3px; }
-
-.reels-carousel-label {
-  position: absolute;
-  right: 16px;
-  bottom: 15px;
-  left: 16px;
-  overflow: hidden;
-  color: #fff;
-  font-size: .9rem;
-  font-weight: 600;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 .reels-carousel-arrow {
   display: none;
@@ -129,6 +144,12 @@
   .reels-carousel-track { gap: 16px; padding-top: 8px; padding-bottom: 16px; }
   .reels-carousel-card { border-radius: 16px; }
   .reels-carousel-arrow { display: none; }
+}
+
+@media (max-width: 420px) {
+  .reels-carousel { --reel-card-width: min(78vw, 245px); }
+  .reels-carousel-play { width: 50px; height: 50px; }
+  .reels-carousel-play svg { width: 24px; height: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

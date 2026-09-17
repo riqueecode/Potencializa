@@ -29,33 +29,6 @@
 	}
 }
 
-.color-change-2x {
-	-webkit-animation: color-change-2x 4s linear infinite alternate both;
-	animation: color-change-2x 4s linear infinite alternate both;
-}
-
-@-webkit-keyframes color-change-2x {
-	0% {
-		background: #ffffff;
-		color: var(--color-primary-strong);
-	}
-	100% {
-		background: #b22cff;
-		color: #ffffff;
-	}
-}
-
-@keyframes color-change-2x {
-	0% {
-		background: #ffffff;
-		color: var(--color-primary-strong);
-	}
-	100% {
-		background: #b22cff;
-		color: #ffffff;
-	}
-}
-
 .contact-form {
 	display: grid;
 	gap: 1rem;
@@ -64,6 +37,46 @@
 	border-radius: 1.5rem;
 	padding: 2rem;
 	box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.cta .contact-form,
+.cta .contact-form__field input,
+.cta .contact-form__field select,
+.cta .contact-form__field textarea {
+	background: #000000 !important;
+	border-color: #321b57 !important;
+	color: #ffffff !important;
+}
+
+.cta .contact-form__header h3,
+.cta .contact-form__header p,
+.cta .contact-form__field span,
+.cta .contact-form__field input::placeholder,
+.cta .contact-form__field textarea::placeholder,
+.cta .contact-form__field select,
+.cta .contact-form__submit {
+	color: #ffffff !important;
+}
+
+.cta .contact-form__submit {
+	border: 1px solid #321b57 !important;
+}
+
+.cta .contact-form__field input:focus,
+.cta .contact-form__field select:focus,
+.cta .contact-form__field textarea:focus {
+	border-color: #321b57 !important;
+	box-shadow: 0 0 0 3px rgba(50, 27, 87, 0.22);
+}
+
+.cta .contact-form__confirmation-card {
+	background: #000000;
+	border-color: #321b57;
+	color: #ffffff;
+}
+
+.cta .contact-form__confirmation-card p {
+	color: #ffffff;
 }
 
 .contact-form__header {
@@ -79,35 +92,6 @@
 	margin: 0;
 	color: var(--color-text-muted);
 	line-height: 1.75;
-}
-
-:root[data-theme="light"] .contact-form {
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-form__header p,
-:root[data-theme="light"] .contact-form__field span,
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea,
-:root[data-theme="light"] .contact-form__submit {
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea {
-	background: rgba(128, 128, 128, 0.18);
-	border-color: rgba(255, 255, 255, 0.32);
-}
-
-:root[data-theme="light"] .contact-form__field select option {
-	background: rgba(0, 0, 0, 0.12);
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-form {
-	background: rgba(128, 128, 128, 0.24);
 }
 
 .contact-form__grid {
@@ -188,13 +172,15 @@
 	grid-column: 1 / -1;
 }
 
-.contact-form__submit {
+.contact-form__submit,
+.cta .contact-form__submit {
 	width: min(320px, 100%);
 	justify-self: center;
 	margin: 0 auto;
-	background: var(--color-action);
-	color: var(--color-action-contrast);
-	border-color: transparent;
+	background: transparent !important;
+	border: 1px solid #ffffff !important;
+	border-radius: 11px;
+	color: #ffffff !important;
 }
 
 .contact-form__submit:disabled {
@@ -204,59 +190,9 @@
 
 .contact-form__submit:hover,
 .contact-form__submit:focus-visible {
-	background: rgba(111, 77, 191, 0.92);
-}
-
-:root[data-theme="light"] .contact-form {
-	color: #ffffff;
-}
-
-:root[data-theme="light"] .contact-form__header h3,
-:root[data-theme="light"] .contact-form__header p,
-:root[data-theme="light"] .contact-form__field span,
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea,
-:root[data-theme="light"] .contact-form__submit {
-	color: #ffffff !important;
-}
-
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea {
-	background: rgba(128, 128, 128, 0.18) !important;
-	border-color: rgba(255, 255, 255, 0.32) !important;
-}
-
-:root[data-theme="light"] .contact-form__field input::placeholder,
-:root[data-theme="light"] .contact-form__field textarea::placeholder,
-:root[data-theme="light"] .contact-form__field select {
-	color: rgba(255, 255, 255, 0.84) !important;
-}
-
-/* Tema claro: todo o texto preenchido usa o roxo padrão da identidade. */
-:root[data-theme="light"] .contact-form,
-:root[data-theme="light"] .contact-form__header h3,
-:root[data-theme="light"] .contact-form__header p,
-:root[data-theme="light"] .contact-form__field span,
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea,
-:root[data-theme="light"] .contact-form__submit {
-	color: var(--color-text) !important;
-}
-
-:root[data-theme="light"] .contact-form,
-:root[data-theme="light"] .contact-form__field input,
-:root[data-theme="light"] .contact-form__field select,
-:root[data-theme="light"] .contact-form__field textarea {
-	background: #ffffff !important;
-	border-color: var(--color-border) !important;
-}
-
-:root[data-theme="light"] .contact-form__field input::placeholder,
-:root[data-theme="light"] .contact-form__field textarea::placeholder {
-	color: color-mix(in srgb, var(--color-text) 55%, transparent) !important;
+	background: transparent !important;
+	border-color: #321b57 !important;
+	color: #321b57 !important;
 }
 
 .contact-form__confirmation {
@@ -309,4 +245,34 @@
 	.contact-form__submit {
 		width: 100%;
 	}
+}
+
+/* Mantém todas as bordas do formulário da CTA na cor de destaque. */
+.cta .contact-form,
+.cta .contact-form__field input,
+.cta .contact-form__field select,
+.cta .contact-form__field textarea,
+.cta .contact-form__submit,
+.cta .contact-form__confirmation-card {
+	border-color: #ff5100 !important;
+}
+
+.cta .contact-form__submit {
+	border: 1px solid #ff5100 !important;
+}
+
+.cta .contact-form__field input:focus,
+.cta .contact-form__field select:focus,
+.cta .contact-form__field textarea:focus,
+.cta .contact-form__field input[aria-invalid="true"],
+.cta .contact-form__field select[aria-invalid="true"],
+.cta .contact-form__field textarea[aria-invalid="true"] {
+	border-color: #ff5100 !important;
+	box-shadow: 0 0 0 3px rgba(255, 81, 0, 0.22);
+}
+
+.cta .contact-form__submit:hover,
+.cta .contact-form__submit:focus-visible {
+	border-color: #ff5100 !important;
+	color: #ff5100 !important;
 }

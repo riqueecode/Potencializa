@@ -41,7 +41,7 @@ function Footer({ onOpenContact }) {
 					<h4>Contato</h4>
 					<ul>
 						<li>
-							<a href="https://www.instagram.com/potencializamkt_?igsh=cTV5Y2llY2ltZTdp" target="_blank" rel="noreferrer">
+							<a href="https://www.instagram.com/potencializa_/" target="_blank" rel="noreferrer">
 								<InstagramIcon />
 								Instagram
 							</a>

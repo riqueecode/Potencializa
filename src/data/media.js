@@ -3,6 +3,21 @@ import imgEscuro from "../assets/images/imgEscuro.jpg";
 import imgProfile from "../assets/images/imgProfile.jpeg";
 import imgWhite from "../assets/images/imgwhite.jpeg";
 
+const portfolioVideos = import.meta.glob("../assets/VideoPortfolios/*.mp4", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+
+const testimonialVideos = import.meta.glob("../assets/Depoimentos/*.mp4", {
+  eager: true,
+  import: "default",
+  query: "?url",
+});
+
+const getVideoFiles = (videos) => Object.entries(videos).sort(([pathA], [pathB]) => pathA.localeCompare(pathB));
+const getVideoType = (video) => (video.toLowerCase().endsWith(".mp4") ? "video/mp4" : "video/quicktime");
+
 export const mediaCatalog = {
   vsl: {
     id: "vsl-fundadora",
@@ -14,34 +29,23 @@ export const mediaCatalog = {
     description: "Vídeo principal da landing page. Substituir quando o arquivo real for enviado.",
   },
   reels: {
-    source: "instagram",
+    source: "local",
     kind: "video_collection",
-    items: [
-      { id: 1, title: "Reel 1", thumbnail: imgDestaque, media_type: "IMAGE", source: null },
-      { id: 2, title: "Reel 2", thumbnail: imgEscuro, media_type: "IMAGE", source: null },
-      { id: 3, title: "Reel 3", thumbnail: imgProfile, media_type: "IMAGE", source: null },
-      { id: 4, title: "Reel 4", thumbnail: imgWhite, media_type: "IMAGE", source: null },
-      { id: 5, title: "Reel 5", thumbnail: imgDestaque, media_type: "IMAGE", source: null },
-    ],
+    items: getVideoFiles(portfolioVideos).map(([path, video], index) => ({
+      id: `portfolio-${index + 1}`,
+      title: `Vídeo de portfólio ${index + 1}`,
+      video,
+      videoType: getVideoType(video),
+    })),
   },
   testimonials: {
     kind: "video_collection",
-    items: [
-      {
-        id: "testimonial-1",
-        title: "Depoimento 1",
-        poster: imgProfile,
-        source: null,
-        placeholder: "Vídeo de depoimento em preparação",
-      },
-      {
-        id: "testimonial-2",
-        title: "Depoimento 2",
-        poster: imgEscuro,
-        source: null,
-        placeholder: "Vídeo de depoimento em preparação",
-      },
-    ],
+    items: getVideoFiles(testimonialVideos).map(([path, video], index) => ({
+      id: `testimonial-${index + 1}`,
+      title: `Depoimento ${index + 1}`,
+      video,
+      videoType: getVideoType(video),
+    })),
   },
   storymaker: {
     kind: "video_collection",
