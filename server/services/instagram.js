@@ -3,9 +3,11 @@ const INSTAGRAM_API_HOST = "https://graph.instagram.com";
 const INSTAGRAM_MEDIA_FIELDS = [
   "id",
   "media_type",
+  "media_product_type",
   "media_url",
   "thumbnail_url",
   "permalink",
+  "caption",
   "timestamp",
 ].join(",");
 
@@ -77,7 +79,7 @@ export async function fetchInstagramReels() {
   }
 
   return (Array.isArray(payload?.data) ? payload.data : [])
-    .filter((media) => media.media_type === "VIDEO")
+    .filter((media) => media.media_product_type === "REELS")
     .sort(
       (first, second) =>
         new Date(second.timestamp || 0) - new Date(first.timestamp || 0)

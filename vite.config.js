@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-	base: './',
+	base: '/Potencializa/',
 	server: {
 		watch: {
 			// Perfil temporário criado durante a inspeção local no Chrome. Ele pode

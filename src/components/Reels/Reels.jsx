@@ -61,7 +61,7 @@ export default function Reels() {
         <div className="reels-cta">
           <a
             className="reels-button"
-            href="https://www.instagram.com/potencializa_/"
+            href="https://www.instagram.com/potencializa__/reels/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Abrir Instagram da Potencializa"

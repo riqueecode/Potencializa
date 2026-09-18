@@ -1,15 +1,47 @@
 import imgDestaque from "../assets/images/imgDestaque.jpeg";
 import imgEscuro from "../assets/images/imgEscuro.jpg";
-import imgProfile from "../assets/images/imgProfile.jpeg";
 import imgWhite from "../assets/images/imgwhite.jpeg";
 
-const portfolioVideos = import.meta.glob("../assets/VideoPortfolios/*.mp4", {
+const portfolioPosterFiles = import.meta.glob("../assets/VideoPortfolios/posters/*.jpg", {
+  eager: true,
+  import: "default",
+});
+const testimonialPosterFiles = import.meta.glob("../assets/Depoimentos/posters/*.jpg", {
+  eager: true,
+  import: "default",
+});
+
+const normalizePosterKey = (value = "") => value
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/\.[^.]+$/, "")
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-+|-+$/g, "");
+
+const buildPosterLookup = (posterFiles) => Object.fromEntries(
+  Object.entries(posterFiles).map(([path, url]) => {
+    const fileName = path.split("/").pop();
+    return [normalizePosterKey(fileName), url];
+  })
+);
+
+const portfolioPosterLookup = buildPosterLookup(portfolioPosterFiles);
+const testimonialPosterLookup = buildPosterLookup(testimonialPosterFiles);
+
+const resolvePosterForVideo = (videoPath, posterLookup) => {
+  const fileName = videoPath.split("/").pop();
+  const normalized = normalizePosterKey(fileName);
+  return posterLookup[normalized] || null;
+};
+
+const portfolioVideos = import.meta.glob("../assets/VideoPortfolios/*.{mp4,mov}", {
   eager: true,
   import: "default",
   query: "?url",
 });
 
-const testimonialVideos = import.meta.glob("../assets/Depoimentos/*.mp4", {
+const testimonialVideos = import.meta.glob("../assets/Depoimentos/*.{mp4,mov}", {
   eager: true,
   import: "default",
   query: "?url",
@@ -35,17 +67,23 @@ export const mediaCatalog = {
       id: `portfolio-${index + 1}`,
       title: `Vídeo de portfólio ${index + 1}`,
       video,
+      poster: resolvePosterForVideo(path, portfolioPosterLookup),
       videoType: getVideoType(video),
     })),
   },
   testimonials: {
     kind: "video_collection",
-    items: getVideoFiles(testimonialVideos).map(([path, video], index) => ({
-      id: `testimonial-${index + 1}`,
-      title: `Depoimento ${index + 1}`,
-      video,
-      videoType: getVideoType(video),
-    })),
+    items: getVideoFiles(testimonialVideos).map(([path, video], index) => {
+      const poster = resolvePosterForVideo(path, testimonialPosterLookup);
+
+      return {
+        id: `testimonial-${index + 1}`,
+        title: `Depoimento ${index + 1}`,
+        video,
+        poster,
+        videoType: getVideoType(video),
+      };
+    }),
   },
   storymaker: {
     kind: "video_collection",

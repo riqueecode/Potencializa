@@ -10,11 +10,34 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const allowedOrigins = new Set(
+  [
+    process.env.CORS_ORIGIN,
+    process.env.FRONTEND_ORIGIN,
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+  ].filter(Boolean)
+);
 
-app.use(cors());
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin) || origin.endsWith(".github.io") || origin.endsWith(".pages.dev")) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Origem não autorizada pelo CORS."));
+    },
+    credentials: false,
+  })
+);
 app.use(express.json());
 
 app.get("/api/instagram/reels", async (req, res) => {
+  res.set("Cache-Control", "no-store");
   try {
     res.json(await fetchInstagramReels());
   } catch (error) {

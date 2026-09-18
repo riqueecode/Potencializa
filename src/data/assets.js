@@ -1,9 +1,14 @@
+import logo from "../assets/images/logo.svg";
+import profile from "../assets/images/imgProfile.jpeg";
+import highlight from "../assets/images/imgDestaque.jpeg";
+import dark from "../assets/images/imgEscuro.jpg";
+
 export const assetStructure = {
   images: {
-    logo: "/src/assets/images/logo.svg",
-    profile: "/src/assets/images/imgProfile.jpeg",
-    highlight: "/src/assets/images/imgDestaque.jpeg",
-    dark: "/src/assets/images/imgEscuro.jpg",
+    logo,
+    profile,
+    highlight,
+    dark,
   },
   videos: {
     vsl: {

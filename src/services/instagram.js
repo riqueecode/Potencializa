@@ -1,9 +1,15 @@
-const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3001";
+const DEV_API_URL = "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL?.trim()
+  || (import.meta.env.DEV ? DEV_API_URL : "");
 
 export async function getInstagramReels() {
+  if (!API_URL) {
+    throw new Error("VITE_API_URL não configurada para este ambiente.");
+  }
+
   const response = await fetch(
-    `${API_URL}/api/instagram/reels`
+    `${API_URL.replace(/\/$/, "")}/api/instagram/reels`,
+    { cache: "no-store" }
   );
 
   if (!response.ok) {
