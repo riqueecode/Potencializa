@@ -57,36 +57,18 @@
   box-shadow: 0 18px 38px rgba(0, 0, 0, .34);
 }
 
-.reels-carousel-hit { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; touch-action: manipulation; }
+.reels-carousel-hit { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .reels-carousel-hit:focus-visible { outline: 3px solid white; outline-offset: -4px; border-radius: inherit; }
+.reels-carousel-expand { position: absolute; right: 10px; top: 10px; width: 44px; height: 44px; border: 1px solid #ffffff80; border-radius: 8px; background: #18121fcc; color: white; cursor: pointer; font-size: 26px; }
 .reels-carousel-error { position: absolute; bottom: 12px; left: 8px; right: 8px; padding: 8px; background: #18121fee; color: white; font-size: 12px; pointer-events: none; }
 .reels-carousel-error a { display: block; pointer-events: auto; text-decoration: underline; }
+.reels-carousel-arrow:disabled { opacity: .4; cursor: default; }
 .video-modal { position: fixed; inset: 0; width: 100%; max-width: none; height: 100vh; height: 100dvh; max-height: none; margin: 0; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); border: 0; box-sizing: border-box; background: transparent; color: white; overflow: hidden; }
 .video-modal[open] { display: grid; place-items: center; }
 .video-modal::backdrop { background: rgb(0 0 0 / .88); }
-.video-modal__content { position: relative; width: min(90vw, 1280px); max-width: 100%; }
-.video-modal__header { display: flex; justify-content: flex-end; padding-bottom: 8px; }
-.video-modal video { display: block; width: 100%; height: min(84vh, calc(100vh - 96px)); height: min(84dvh, calc(100dvh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom))); max-width: 100%; object-fit: contain; background: black; }
-.video-modal__close {
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: white;
-  font-size: 30px;
-  line-height: 1;
-  cursor: pointer;
-}
-.video-modal__close:hover,
-.video-modal__close:focus-visible {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  opacity: .8;
-}
+.video-modal__content { position: relative; max-width: 100%; }
+.video-modal video { display: block; width: min(90vw, 1280px); height: 84vh; height: 84dvh; max-width: 100%; object-fit: contain; background: black; }
+.video-modal__close { position: absolute; z-index: 1; top: 8px; right: 8px; width: 44px; height: 44px; border: 1px solid #ffffff80; border-radius: 50%; background: #18121fee; color: white; font-size: 30px; cursor: pointer; }
 .video-modal__error { position: absolute; bottom: 60px; left: 12px; right: 12px; padding: 12px; background: #18121fee; }
 
 .reels-carousel-media {
@@ -126,16 +108,41 @@
 
 .reels-carousel-play svg { width: 29px; height: 29px; margin-left: 3px; }
 
+.reels-carousel-arrow {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+  color: var(--color-action-contrast, #fff);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.reels-carousel-arrow span { margin-top: -3px; font-size: 2rem; line-height: 1; }
+.reels-carousel-arrow--prev { left: 0; }
+.reels-carousel-arrow--next { right: 0; }
+
 @media (hover: hover) and (pointer: fine) {
   .reels-carousel-card.is-focused:hover { transform: translateY(-6px) scale(1.025); box-shadow: 0 20px 42px rgba(0, 0, 0, .38); }
   .reels-carousel-card:hover .reels-carousel-media { transform: scale(1.04); }
   .reels-carousel-card:hover .reels-carousel-play { background: rgba(24, 18, 31, .65); transform: translate(-50%, -50%) scale(1.13); }
+  .reels-carousel-arrow:hover { box-shadow: 0 12px 26px rgba(0, 0, 0, .3); transform: translateY(-50%) scale(1.08); }
 }
 
 @media (max-width: 767px) {
   .reels-carousel { --reel-card-width: clamp(220px, 72vw, 260px); padding: 4px 0 12px; }
   .reels-carousel-track { gap: 16px; padding-top: 8px; padding-bottom: 16px; }
   .reels-carousel-card { border-radius: 16px; }
+  .reels-carousel-arrow { display: none; }
 }
 
 @media (max-width: 420px) {
@@ -146,5 +153,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reels-carousel-track { scroll-behavior: auto; }
-  .reels-carousel-card, .reels-carousel-media, .reels-carousel-play { transition: none; }
+  .reels-carousel-card, .reels-carousel-media, .reels-carousel-play, .reels-carousel-arrow { transition: none; }
 }

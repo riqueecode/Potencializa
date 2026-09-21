@@ -2,26 +2,17 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./ReelsCarousel.css";
 import VideoModal, { pauseOtherVideos } from "./VideoModal.jsx";
 
-const DOUBLE_INTERACTION_MS = 220;
-
 export default function ReelsCarousel({ reels = [] }) {
   const trackRef = useRef(null);
   const videoRefs = useRef(new Map());
   const dragStart = useRef(null);
   const suppressClick = useRef(false);
-  const pendingInteraction = useRef(null);
-  const lastPointerType = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(reels.length > 1 ? 1 : 0);
   const focusedIndexRef = useRef(focusedIndex);
   const [playingIndex, setPlayingIndex] = useState(null);
   const [expanded, setExpanded] = useState(null);
   const [errors, setErrors] = useState({});
-
-  const cancelInteraction = () => {
-    clearTimeout(pendingInteraction.current?.timer);
-    pendingInteraction.current = null;
-  };
 
   const updateFocusedReel = () => {
     const track = trackRef.current;
@@ -36,7 +27,6 @@ export default function ReelsCarousel({ reels = [] }) {
     }, null);
 
     if (nearestCard) {
-      if (nearestCard.index !== focusedIndexRef.current) cancelInteraction();
       focusedIndexRef.current = nearestCard.index;
       setFocusedIndex(nearestCard.index);
       videoRefs.current.forEach((video, index) => {
@@ -72,7 +62,6 @@ export default function ReelsCarousel({ reels = [] }) {
     const resizeObserver = new ResizeObserver(() => centerReel(focusedIndexRef.current));
     if (trackRef.current) resizeObserver.observe(trackRef.current);
     return () => {
-      cancelInteraction();
       resizeObserver.disconnect();
     };
   }, [reels.length]);
@@ -83,17 +72,7 @@ export default function ReelsCarousel({ reels = [] }) {
     if (!track) return;
 
     suppressClick.current = false;
-    lastPointerType.current = event.pointerType;
-    const pending = pendingInteraction.current;
-    const id = event.target.closest(".reels-carousel-hit")?.closest("article")?.dataset.reelId;
-    const second = pending && pending.id === id
-      && performance.now() - pending.at <= DOUBLE_INTERACTION_MS
-      && Math.hypot(event.clientX - pending.x, event.clientY - pending.y) <= 24;
-    if (second) {
-      clearTimeout(pending.timer);
-      pending.second = true;
-    } else if (pending) cancelInteraction();
-    dragStart.current = { x: event.clientX, y: event.clientY, at: performance.now(), scrollLeft: track.scrollLeft };
+    dragStart.current = { x: event.clientX, y: event.clientY, scrollLeft: track.scrollLeft };
   };
 
   const handlePointerMove = (event) => {
@@ -105,7 +84,6 @@ export default function ReelsCarousel({ reels = [] }) {
     const start = dragStart.current;
     if (!start || !trackRef.current) return;
     if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8) {
-      cancelInteraction();
       suppressClick.current = true;
       if (event.pointerType !== "touch") {
         trackRef.current.setPointerCapture(event.pointerId);
@@ -121,19 +99,7 @@ export default function ReelsCarousel({ reels = [] }) {
 
     if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
     setIsDragging(false);
-    if (event.type === "pointercancel") {
-      suppressClick.current = true;
-      cancelInteraction();
-    } else if (event.pointerType === "touch" && !suppressClick.current) {
-      const id = event.target.closest(".reels-carousel-hit")?.closest("article")?.dataset.reelId;
-      const index = reels.findIndex(reel => reel.id === id);
-      if (index >= 0 && dragStart.current && performance.now() - dragStart.current.at < 500) {
-        if (pendingInteraction.current?.second) {
-          cancelInteraction();
-          expandReel(index);
-        } else queueInteraction(index, event);
-      } else cancelInteraction();
-    }
+    if (event.type === "pointercancel") suppressClick.current = true;
     dragStart.current = null;
   };
 
@@ -159,22 +125,10 @@ export default function ReelsCarousel({ reels = [] }) {
   };
 
   const expandReel = (index) => {
-    cancelInteraction();
     const video = videoRefs.current.get(index);
-    const playback = { time: video.currentTime, playing: true, volume: video.volume, muted: video.muted };
+    const playback = { time: video.currentTime, playing: !video.paused, volume: video.volume, muted: video.muted };
     pauseOtherVideos();
     setExpanded({ reel: reels[index], playback });
-  };
-
-  const queueInteraction = (index, event) => {
-    cancelInteraction();
-    const pending = { id: reels[index].id, at: performance.now(), x: event.clientX, y: event.clientY };
-    pending.timer = setTimeout(() => {
-      if (pendingInteraction.current !== pending) return;
-      pendingInteraction.current = null;
-      if (!document.querySelector(".video-modal[open]")) playReel(index);
-    }, DOUBLE_INTERACTION_MS);
-    pendingInteraction.current = pending;
   };
 
   if (!reels.length) {
@@ -258,39 +212,34 @@ export default function ReelsCarousel({ reels = [] }) {
                 className="reels-carousel-hit"
                 type="button"
                 aria-label={`${playingIndex === index ? "Pausar" : "Reproduzir"} vídeo: ${reel.title}`}
-                aria-keyshortcuts="Shift+Enter"
-                onKeyDown={event => {
-                  if (event.key === "Enter" && event.shiftKey) {
-                    event.preventDefault();
-                    expandReel(index);
-                  }
-                }}
-                onClick={event => {
-                  if (event.detail === 0) { cancelInteraction(); playReel(index); }
-                  else if (lastPointerType.current !== "touch") {
-                    if (event.detail === 1) queueInteraction(index, event);
-                    else cancelInteraction();
-                  }
-                }}
-                onDoubleClick={event => {
-                  event.preventDefault();
-                  if (lastPointerType.current !== "touch" && !suppressClick.current) expandReel(index);
-                }}
+                onClick={() => playReel(index)}
               >
                 {playingIndex !== index && <span className="reels-carousel-play">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10-6.5-10-6.5Z" fill="currentColor" /></svg>
                 </span>}
               </button>
+              <button className="reels-carousel-expand" type="button" aria-label={`Expandir vídeo: ${reel.title}`} onClick={() => expandReel(index)}>⛶</button>
               {errors[index] && <div className="reels-carousel-error" role="status">Não foi possível reproduzir. Tente novamente.
                 {reel.permalink && <a href={reel.permalink} target="_blank" rel="noopener noreferrer">Assistir no Instagram</a>}
               </div>}
               </>
-            ) : (
-              <div className="reels-carousel-hit reels-carousel-hit--static" aria-hidden="true" />
-            )}
+            ) : reel.permalink ? (
+              <a
+                className="reels-carousel-play"
+                href={reel.permalink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Abrir ${reel.title} no Instagram`}
+                title="Assistir no Instagram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10-6.5-10-6.5Z" fill="currentColor" /></svg>
+              </a>
+            ) : null}
           </article>
         ))}
       </div>
+      <button className="reels-carousel-arrow reels-carousel-arrow--prev" type="button" aria-label="Vídeo anterior" disabled={focusedIndex === 0} onClick={() => centerReel(focusedIndex - 1)}>‹</button>
+      <button className="reels-carousel-arrow reels-carousel-arrow--next" type="button" aria-label="Próximo vídeo" disabled={focusedIndex === reels.length - 1} onClick={() => centerReel(focusedIndex + 1)}>›</button>
       {expanded && <VideoModal {...expanded} onClose={() => setExpanded(null)} />}
     </div>
   );

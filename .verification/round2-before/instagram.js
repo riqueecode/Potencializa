@@ -32,10 +32,6 @@ export function normalizeInstagramReel(item) {
 
   return {
     id: item.id,
-    mediaType: item.media_type || null,
-    mediaProductType: item.media_product_type || null,
-    mediaUrl: item.media_url || null,
-    thumbnailUrl: item.thumbnail_url || null,
     title: caption ? caption.slice(0, 40) : "Reel",
     thumbnail: item.thumbnail_url || "",
     video: item.media_url || "",
@@ -47,8 +43,5 @@ export function normalizeInstagramReel(item) {
 
 export async function fetchInstagramReels() {
   const data = await getInstagramReels();
-  return data
-    .filter((item) => item?.media_url && typeof item.media_url === "string" && item.media_url.trim())
-    .map(normalizeInstagramReel)
-    .filter(Boolean);
+  return data.map(normalizeInstagramReel).filter(Boolean);
 }

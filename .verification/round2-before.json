@@ -1,0 +1,200 @@
+{
+  "rawFirst": {
+    "id": "18110350412055648",
+    "media_type": "VIDEO",
+    "media_product_type": "REELS",
+    "media_url": null,
+    "media_url_field_present": false,
+    "thumbnail_url": {
+      "present": true,
+      "host": "scontent-lis1-1.cdninstagram.com"
+    },
+    "permalink": "https://www.instagram.com/reel/DcL4qEDMncO/",
+    "timestamp": "2026-08-18T15:00:05+0000"
+  },
+  "backendFirst": {
+    "id": "18110350412055648",
+    "media_url": null,
+    "media_url_field_present": true,
+    "thumbnail_url": {
+      "present": true,
+      "host": "scontent-lis1-1.cdninstagram.com"
+    },
+    "permalink": "https://www.instagram.com/reel/DcL4qEDMncO/",
+    "timestamp": "2026-08-18T15:00:05+0000"
+  },
+  "detail": {
+    "status": 200,
+    "id": "18110350412055648",
+    "media_type": "VIDEO",
+    "media_product_type": "REELS",
+    "media_url": null,
+    "media_url_field_present": false,
+    "thumbnail_url": {
+      "present": true,
+      "host": "scontent-lis1-1.cdninstagram.com"
+    },
+    "permalink": "https://www.instagram.com/reel/DcL4qEDMncO/",
+    "timestamp": "2026-08-18T15:00:05+0000"
+  },
+  "normalizedFirst": {
+    "id": "18110350412055648",
+    "title": "A gente edita para todo mundo e por últi",
+    "thumbnail": {
+      "present": true
+    },
+    "video": "",
+    "caption": "A gente edita para todo mundo e por último é para a gente 😩",
+    "timestamp": "2026-08-18T15:00:05+0000",
+    "permalink": "https://www.instagram.com/reel/DcL4qEDMncO/"
+  },
+  "dom": {
+    "videos": 0,
+    "links": [
+      {
+        "href": "https://www.instagram.com/reel/DcL4qEDMncO/",
+        "label": "Abrir A gente edita para todo mundo e por últi no Instagram"
+      }
+    ],
+    "thumbnail": true
+  },
+  "catalog": {
+    "vsl": {
+      "id": "vsl-fundadora",
+      "kind": "video",
+      "title": "VSL da fundadora",
+      "source": null,
+      "poster": null,
+      "status": "pending",
+      "description": "Vídeo principal da landing page. Substituir quando o arquivo real for enviado."
+    },
+    "reels": {
+      "source": "local",
+      "kind": "video_collection",
+      "items": [
+        {
+          "id": "portfolio-1",
+          "title": "Vídeo de portfólio 1",
+          "video": "/Potencializa/src/assets/VideoPortfolios/copy_03E91B91-0B23-455A-84CB-C080C092C19B.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/copy-original.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-3",
+          "title": "Vídeo de portfólio 3",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-elaine.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/depoimento-elaine.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-4",
+          "title": "Vídeo de portfólio 4",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-1.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-1.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-5",
+          "title": "Vídeo de portfólio 5",
+          "video": "/Potencializa/src/assets/VideoPortfolios/web/portfolio-video4-web.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-2.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-6",
+          "title": "Vídeo de portfólio 6",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-3.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-3.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-7",
+          "title": "Vídeo de portfólio 7",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-4.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-4.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-8",
+          "title": "Vídeo de portfólio 8",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-5.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-5.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-9",
+          "title": "Vídeo de portfólio 9",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-6.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-6.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-10",
+          "title": "Vídeo de portfólio 10",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%201%20.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/video-1.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-11",
+          "title": "Vídeo de portfólio 11",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%202.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/video-2.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-12",
+          "title": "Vídeo de portfólio 12",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%203%20.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/video-3.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-13",
+          "title": "Vídeo de portfólio 13",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%206%20.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/video-6.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-14",
+          "title": "Vídeo de portfólio 14",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%208%20mp4.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/video-8.jpg",
+          "videoType": "video/mp4"
+        }
+      ]
+    },
+    "testimonials": {
+      "kind": "video_collection",
+      "items": [
+        {
+          "id": "testimonial-1",
+          "title": "Depoimento 1",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-edilaine.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-edilaine.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "testimonial-2",
+          "title": "Depoimento 2",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-elaine.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-elaine.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "testimonial-3",
+          "title": "Depoimento 3",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-iracelma.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-iracelma.jpg",
+          "videoType": "video/mp4"
+        }
+      ]
+    },
+    "storymaker": {
+      "kind": "video_collection",
+      "items": [],
+      "status": "pending"
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "catalog": {
+    "vsl": {
+      "id": "vsl-fundadora",
+      "kind": "video",
+      "title": "VSL da fundadora",
+      "source": null,
+      "poster": null,
+      "status": "pending",
+      "description": "Vídeo principal da landing page. Substituir quando o arquivo real for enviado."
+    },
+    "reels": {
+      "source": "local",
+      "kind": "video_collection",
+      "items": [
+        {
+          "id": "portfolio-1",
+          "title": "Vídeo de portfólio 1",
+          "video": "/Potencializa/src/assets/VideoPortfolios/copy_03E91B91-0B23-455A-84CB-C080C092C19B.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-2",
+          "title": "Vídeo de portfólio 2",
+          "video": "/Potencializa/src/assets/VideoPortfolios/Depoimento%20Edilaine%20.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-3",
+          "title": "Vídeo de portfólio 3",
+          "video": "/Potencializa/src/assets/VideoPortfolios/Depoimento%20Elaine%20.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-4",
+          "title": "Vídeo de portfólio 4",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-1.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-5",
+          "title": "Vídeo de portfólio 5",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-2.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-2.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-6",
+          "title": "Vídeo de portfólio 6",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-3.mp4",
+          "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-3.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-7",
+          "title": "Vídeo de portfólio 7",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-4.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-8",
+          "title": "Vídeo de portfólio 8",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-5.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-9",
+          "title": "Vídeo de portfólio 9",
+          "video": "/Potencializa/src/assets/VideoPortfolios/portfolio-6.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-10",
+          "title": "Vídeo de portfólio 10",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%201%20.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-11",
+          "title": "Vídeo de portfólio 11",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%202.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-12",
+          "title": "Vídeo de portfólio 12",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%203%20.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-13",
+          "title": "Vídeo de portfólio 13",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%206%20.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "portfolio-14",
+          "title": "Vídeo de portfólio 14",
+          "video": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%208%20mp4.mp4",
+          "poster": null,
+          "videoType": "video/mp4"
+        }
+      ]
+    },
+    "testimonials": {
+      "kind": "video_collection",
+      "items": [
+        {
+          "id": "testimonial-1",
+          "title": "Depoimento 1",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-edilaine.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-edilaine.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "testimonial-2",
+          "title": "Depoimento 2",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-elaine.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-elaine.jpg",
+          "videoType": "video/mp4"
+        },
+        {
+          "id": "testimonial-3",
+          "title": "Depoimento 3",
+          "video": "/Potencializa/src/assets/Depoimentos/depoimento-iracelma.mp4",
+          "poster": "/Potencializa/src/assets/Depoimentos/posters/depoimento-iracelma.jpg",
+          "videoType": "video/mp4"
+        }
+      ]
+    },
+    "storymaker": {
+      "kind": "video_collection",
+      "items": [],
+      "status": "pending"
+    }
+  },
+  "results": [
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/copy_03E91B91-0B23-455A-84CB-C080C092C19B.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata"
+      ],
+      "time": 0,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/Depoimento%20Edilaine%20.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.391006,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/Depoimento%20Elaine%20.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "error"
+      ],
+      "time": 0,
+      "width": 0,
+      "height": 0,
+      "error": "PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed",
+      "failure": "Failed to load because no supported source was found."
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-1.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.3,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-2.mp4",
+      "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-2.jpg",
+      "events": [
+        "play",
+        "loadedmetadata",
+        "error"
+      ],
+      "time": 0,
+      "width": 720,
+      "height": 1280,
+      "error": "PipelineStatus::PIPELINE_ERROR_DECODE: Failed to send audio packet for decoding: {timestamp=-23220 duration=23220 size=315 is_key_frame=1 encrypted=0}",
+      "failure": "The play() request was interrupted by a call to pause(). https://goo.gl/LdLk22"
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-3.mp4",
+      "poster": "/Potencializa/src/assets/VideoPortfolios/posters/portfolio-3.jpg",
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.085604,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-4.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.4163,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-5.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.080895,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/portfolio-6.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.16,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%201%20.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.26,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%202.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.16,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%203%20.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.46,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%206%20.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.411449,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/Potencializa/src/assets/VideoPortfolios/V%C3%ADdeo%208%20mp4.mp4",
+      "poster": null,
+      "events": [
+        "play",
+        "loadedmetadata",
+        "loadeddata",
+        "canplay",
+        "playing"
+      ],
+      "time": 0.12,
+      "width": 720,
+      "height": 1280
+    }
+  ]
+}

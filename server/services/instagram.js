@@ -79,7 +79,12 @@ export async function fetchInstagramReels() {
   }
 
   return (Array.isArray(payload?.data) ? payload.data : [])
-    .filter((media) => media.media_product_type === "REELS")
+    .filter(
+      (media) =>
+        media.media_product_type === "REELS" &&
+        typeof media.media_url === "string" &&
+        media.media_url.trim()
+    )
     .sort(
       (first, second) =>
         new Date(second.timestamp || 0) - new Date(first.timestamp || 0)
@@ -87,6 +92,8 @@ export async function fetchInstagramReels() {
     .slice(0, 5)
     .map((media) => ({
       id: media.id,
+      media_type: media.media_type || null,
+      media_product_type: media.media_product_type || null,
       media_url: media.media_url || null,
       thumbnail_url: media.thumbnail_url || null,
       permalink: media.permalink || null,

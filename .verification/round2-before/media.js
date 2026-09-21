@@ -1,6 +1,7 @@
 import imgDestaque from "../assets/images/imgDestaque.jpeg";
 import imgEscuro from "../assets/images/imgEscuro.jpg";
 import imgWhite from "../assets/images/imgwhite.jpeg";
+import elaineVideo from "../assets/Depoimentos/depoimento-elaine.mp4?url";
 import repairedVideo4 from "../assets/VideoPortfolios/web/portfolio-video4-web.mp4?url";
 
 const portfolioPosterFiles = import.meta.glob("../assets/VideoPortfolios/posters/*.jpg", {
@@ -56,12 +57,13 @@ const testimonialVideos = import.meta.glob("../assets/Depoimentos/*.mp4", {
 const getVideoFiles = (videos) => Object.entries(videos).sort(([pathA], [pathB]) => pathA.localeCompare(pathB));
 const getVideoType = () => "video/mp4";
 
-// IDs are tied to files, never to the current array index. Keep new encodes in
-// web/ so they cannot add slides.
+// Original positions captured before removal. IDs are tied to files, never to
+// the current array index. Keep new encodes in web/ so they cannot add slides.
 const portfolioManifest = [
-  // portfolio-4 duplicates portfolio-1; keep the audited copy source.
-  // portfolio-2 (Edilaine) and portfolio-3 (Elaine) remain in testimonials only.
   ["portfolio-1", "copy_03E91B91-0B23-455A-84CB-C080C092C19B.mp4", "copy-original"],
+  // Original portfolio-2 (Depoimento Edilaine .mp4) removed only here.
+  ["portfolio-3", "Depoimento Elaine .mp4", "depoimento-elaine", elaineVideo],
+  ["portfolio-4", "portfolio-1.mp4", "portfolio-1"],
   ["portfolio-5", "portfolio-2.mp4", "portfolio-2", repairedVideo4],
   ["portfolio-6", "portfolio-3.mp4", "portfolio-3"],
   ["portfolio-7", "portfolio-4.mp4", "portfolio-4"],
