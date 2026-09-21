@@ -14,6 +14,7 @@ const allowedOrigins = new Set(
   [
     process.env.CORS_ORIGIN,
     process.env.FRONTEND_ORIGIN,
+    "https://riqueecode.github.io",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
@@ -21,20 +22,30 @@ const allowedOrigins = new Set(
   ].filter(Boolean)
 );
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.has(origin) || origin.endsWith(".github.io") || origin.endsWith(".pages.dev")) {
-        callback(null, true);
-        return;
-      }
+const corsOptions = {
+  origin(origin, callback) {
+    if (
+      !origin ||
+      allowedOrigins.has(origin) ||
+      origin.endsWith(".github.io") ||
+      origin.endsWith(".pages.dev")
+    ) {
+      callback(null, true);
+      return;
+    }
 
-      callback(new Error("Origem não autorizada pelo CORS."));
-    },
-    credentials: false,
-  })
-);
+    callback(new Error("Origem não autorizada pelo CORS."));
+  },
+  credentials: false,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 app.get("/api/instagram/reels", async (req, res) => {
   res.set("Cache-Control", "no-store");
