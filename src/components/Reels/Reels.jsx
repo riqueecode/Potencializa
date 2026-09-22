@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReelsCarousel from "./ReelsCarousel.jsx";
 import { fetchInstagramReels } from "../../services/instagram.js";
+import imgEscuro from "../../../assets/imgEscuro.jpeg";
 import "./Reels.css";
 
 export default function Reels() {
@@ -47,8 +48,11 @@ export default function Reels() {
         </header>
 
         {loading ? (
-          <div className="reels-carousel reels-carousel--empty" aria-live="polite" aria-label="Carregando Reels">
-            <div className="placeholder-card">Carregando Reels...</div>
+          <div className="reels-carousel reels-carousel--loading" role="status" aria-live="polite" aria-label="Carregando Reels">
+            <div className="reels-loader" aria-hidden="true">
+              <span className="reels-loader__spinner" />
+              <img className="reels-loader__image" src={imgEscuro} alt="" width="50" height="50" />
+            </div>
           </div>
         ) : error ? (
           <div className="reels-carousel reels-carousel--empty" role="status">

@@ -16,6 +16,46 @@
 .reels-title { margin: 0 0 12px; color: var(--color-text); font-size: 1.9rem; }
 .reels-subtitle { max-width: 740px; margin: 0 auto; color: var(--color-text); font-size: 1rem; }
 
+.reels-carousel--loading {
+  display: grid;
+  place-items: center;
+  min-height: 510px;
+}
+
+.reels-loader {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+}
+
+.reels-loader__image {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  animation: reels-image-pulse 1.8s ease-in-out infinite;
+}
+
+.reels-loader__spinner {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: reels-spinner-rotate 1.8s linear infinite;
+}
+
+@keyframes reels-image-pulse {
+  50% { transform: scale(1.06); }
+}
+
+@keyframes reels-spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
 .reels-cta { display: flex; justify-content: center; margin-top: 24px; }
 .reels-button {
   display: inline-flex;
@@ -39,8 +79,15 @@
 @media (max-width: 767px) {
 	.reels-section { padding: 56px 12px 36px; }
   .reels-title { font-size: 1.5rem; }
+  .reels-carousel--loading { min-height: 490px; }
 }
 
 @media (max-width: 420px) {
   .reels-title { font-size: 1.2rem; }
+  .reels-carousel--loading { min-height: 450px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reels-loader__image,
+  .reels-loader__spinner { animation: none; }
 }
